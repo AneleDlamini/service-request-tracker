@@ -3,8 +3,8 @@ This is a system for logging, routing and tracking problems that residents repor
 
 There are four roles, and each sees a different version of the app:
 
-Residents report problems on a map and track progress on their own requests.
-Call-centre agents log requests for people who phone in. This mirrors Sigma’s core business of handling customer contact for clients.
-Supervisors triage incoming requests, assign them to teams and watch deadlines.
-Field teams see their assigned jobs and update the status as they work.
+1. Residents report problems on a map and track progress on their own requests.
+2. Call-centre agents log requests for people who phone in.
+3. Supervisors triage incoming requests, assign them to teams and watch deadlines.
+4. Field teams see their assigned jobs and update the status as they work.
 
