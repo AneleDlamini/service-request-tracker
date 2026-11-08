@@ -1,10 +1,6 @@
 {
   "name": "service-request-tracker",
-  "image": "mcr.microsoft.com/devcontainers/java:1-21-bookworm",
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": { "moby": false },
-    "ghcr.io/devcontainers/features/node:1": { "version": "lts" }
-  },
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
   "forwardPorts": [8080, 5432],
   "customizations": {
     "vscode": {
