@@ -1,4 +1,4 @@
-# service-tracker-request
+# service-request-tracker
 This is a system for logging, routing and tracking problems that residents report to a municipality: a pothole, a burst pipe, a broken streetlight, illegal dumping. So essentially it's a help-desk ticketing system where every ticket has a location, and the location drives most of the logic.
 
 There are four roles, and each sees a different version of the app:
