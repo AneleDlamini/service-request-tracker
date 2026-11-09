@@ -1,0 +1,15 @@
+# Main configuration file for the service-request-tracker application
+
+spring:
+  application:
+    name: service-request-tracker
+  datasource:
+    url: jdbc:postgresql://localhost:5432/requests
+    username: app
+    password: app
+  jpa:
+    hibernate:
+      ddl-auto: validate   # Flyway owns the schema; Hibernate only checks it
+    open-in-view: false
+  flyway:
+    enabled: true
