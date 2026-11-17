@@ -1,7 +1,8 @@
 package io.github.aneledlamini.service_request_tracker.request;
 
 import java.time.Instant;
-import java.util.*;
+import java.util.Objects;
+import java.util.UUID;
 
 import org.locationtech.jts.geom.Point;
 
@@ -24,19 +25,19 @@ public class ServiceRequest {
     private UUID id; 
 
     @Enumerated(EnumType.STRING)
-    @Column (nullable = false)
+    @Column(nullable = false)
     private Category category;
     
     private String description;
 
     @Enumerated (EnumType.STRING)
-    @Column (nullable = false)
+    @Column(nullable = false)
     private RequestStatus status;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private Point location; // Using JTS Point type for spatial data
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private Instant createdAt; // Timestamp for when the request was created
 
     // For loading from the database (Hibernate), JPA requires a no-argument constructor
@@ -47,10 +48,10 @@ public class ServiceRequest {
     // Public constructor for creating a new service request
     public ServiceRequest(Category category, String description, Point location) {
         this.id = UUID.randomUUID();
-        this.category = category;
+        this.category = Objects.requireNonNull(category, "category is required");
         this.description = description;
         this.status = RequestStatus.SUBMITTED; // Default status when creating a new request
-        this.location = location;
+        this.location = Objects.requireNonNull(location, "location is required");
         this.createdAt = Instant.now(); // Set creation timestamp to current time
     }
 
