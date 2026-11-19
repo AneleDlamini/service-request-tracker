@@ -29,6 +29,9 @@ public class ServiceRequestControllerTest {
     @Autowired MockMvc mockMvc;
     @Autowired JdbcTemplate jdbc;
 
+ 
+    // Test 1: Test for creating a service request and storing the location as longitude and latitude
+
     @Test 
     void createsRequestAndStoresLocationAsLonLat() throws Exception {
        String body = 
@@ -55,7 +58,55 @@ public class ServiceRequestControllerTest {
         assertThat(lon).isEqualTo(18.4241);
         assertThat(lat).isEqualTo(-33.9249);
     }
+
+    // Test 2: Test for creating a service request with a missing category field, expecting a 400 status
+    @Test
+    void rejectsRequestWithMissingCategory() throws Exception {
+        
+         String body = 
+         """
+                {"description":"Deep pothole","latitude":-33.9249,"longitude":18.4241}
+         """;
     
+         mockMvc.perform(post("/api/requests")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(body))
+                .andExpect(status().isBadRequest());
+     }
+
+         
+
+    // Test 3: Test for creating a service request with an out-of-range latitude, expecting a 400 status
+    @Test
+    void rejectsRequestWithLatOutOFRange() throws Exception {
+
+         String body = 
+         """
+                {"category":"POTHOLE","description":"Deep pothole","latitude":-100.0,"longitude":18.4241}
+         """;
+    
+         mockMvc.perform(post("/api/requests")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(body))
+                .andExpect(status().isBadRequest());
+     }
+
+
+    // Test 4: Test for creating a service request with unknown category, expecting a 400 status
+    @Test
+    void rejectsRequestWithUnknownCategory() throws Exception {   
+        
+         String body = 
+         """
+                {"category":"SINKHOLE","description":"Deep pothole","latitude":-33.9249,"longitude":18.4241}
+         """;
+    
+         mockMvc.perform(post("/api/requests")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(body))
+                .andExpect(status().isBadRequest());
+             
+     }
 
 
 }
